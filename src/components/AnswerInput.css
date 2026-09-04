@@ -1,0 +1,43 @@
+.ai-container {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.ai-input {
+  width: 100px;
+  font-size: 28px;
+  text-align: center;
+  padding: 10px 8px;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.ai-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.ai-submit {
+  font-size: 20px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.ai-submit:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.ai-submit:not(:disabled):active {
+  background: var(--accent-strong);
+}

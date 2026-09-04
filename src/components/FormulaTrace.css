@@ -1,0 +1,29 @@
+.ft-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.ft-line {
+  font-size: 22px;
+  color: var(--ink-soft);
+}
+
+.ft-line--main {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.ft-line--total {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent-strong);
+}
+
+.ft-empty .ft-line--main {
+  color: var(--ink);
+}

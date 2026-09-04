@@ -1,0 +1,35 @@
+.app-shell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+.app-main {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 8px;
+}
+
+.app-nav {
+  display: flex;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+  position: sticky;
+  bottom: 0;
+}
+
+.app-nav-btn {
+  flex: 1;
+  padding: 14px 4px;
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.app-nav-btn.is-active {
+  color: var(--accent-strong);
+  font-weight: 700;
+}

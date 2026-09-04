@@ -1,0 +1,80 @@
+.rg-container {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  max-height: 60vh;
+  margin: 0 auto;
+  touch-action: manipulation;
+  user-select: none;
+  cursor: pointer;
+}
+
+.rg-grid {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  gap: 2px;
+  background: var(--surface-inset);
+  border-radius: 12px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.rg-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.rg-cell--outline {
+  background: var(--surface) !important;
+  border: 1px solid var(--line);
+}
+
+.rg-dot {
+  width: 32%;
+  height: 32%;
+  min-width: 4px;
+  min-height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  color: var(--ink);
+  opacity: 0.75;
+}
+
+.rg-boundary {
+  position: absolute;
+  pointer-events: none;
+  background: var(--ink);
+  opacity: 0.12;
+  border-radius: 4px;
+  transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.rg-boundary--col {
+  top: 0;
+  height: 100%;
+  width: 3px;
+  transform: translateX(-50%);
+}
+
+.rg-boundary--row {
+  left: 0;
+  width: 100%;
+  height: 3px;
+  transform: translateY(-50%);
+}
+
+.rg-boundary.is-active {
+  opacity: 1;
+  background: var(--accent-strong);
+}
+
+.rg-boundary--col.is-active {
+  width: 5px;
+}
+
+.rg-boundary--row.is-active {
+  height: 5px;
+}
