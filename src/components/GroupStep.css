@@ -1,0 +1,108 @@
+.gs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.gs-progress {
+  color: var(--ink-soft);
+  font-size: 15px;
+  margin: 0;
+}
+
+.gs-running-total {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.gs-add-btn {
+  font-size: 18px;
+  padding: 14px 22px;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.gs-add-btn:active {
+  background: var(--accent-strong);
+}
+
+.gs-prompt {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 4px 0;
+}
+
+.gs-feedback {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+.gs-feedback.is-correct {
+  box-shadow: inset 0 0 0 2px var(--good);
+}
+
+.gs-feedback.is-wrong {
+  box-shadow: inset 0 0 0 2px var(--bad);
+}
+
+.gs-feedback-text {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.gs-equation {
+  font-size: 20px;
+  margin: 0;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.gs-equation--mul {
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
+.gs-alt {
+  background: var(--surface-inset);
+  border-radius: 12px;
+  padding: 8px 16px;
+  text-align: center;
+}
+
+.gs-alt-label {
+  margin: 4px 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.gs-next-btn {
+  font-size: 18px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.gs-next-btn:active {
+  background: var(--accent-strong);
+}

@@ -1,10 +1,10 @@
-import type { AttemptLog, FactProgress, MasteryLevel, TodaySet } from "../types";
-import { allFacts, normalizedFactKey } from "./facts";
+import type { AttemptLog, DanProgress, FactProgress, MasteryLevel } from "../types";
+import { normalizedFactKey } from "./facts";
 
 const KEYS = {
   progress: "mathapp.progress.v1",
   logs: "mathapp.logs.v1",
-  today: "mathapp.today.v1",
+  dan: "mathapp.danProgress.v1",
 } as const;
 
 const MAX_LOGS = 500;
@@ -116,33 +116,33 @@ export function addDiscoveredSignature(a: number, b: number, signature: string):
   return updated;
 }
 
-function todayDateString(): string {
-  return new Date().toISOString().slice(0, 10);
+function defaultDanProgress(): DanProgress {
+  return { currentDan: 1, currentStep: 1, completedDans: [] };
 }
 
-// その日の5問を決める。既に決めていればそれを使い、無ければ習熟度の低い事実を優先して選ぶ
-export function ensureTodaySet(): TodaySet {
-  const date = todayDateString();
-  const existing = readJson<TodaySet | null>(KEYS.today, null);
-  if (existing && existing.date === date) return existing;
+export function loadDanProgress(): DanProgress {
+  return readJson(KEYS.dan, defaultDanProgress());
+}
 
-  const progress = loadProgress();
-  const levelRank: Record<MasteryLevel, number> = { concrete: 0, outline: 1, mental: 2, fluent: 3 };
+function saveDanProgress(p: DanProgress): void {
+  writeJson(KEYS.dan, p);
+}
 
-  const scored = allFacts().map(([a, b]) => {
-    const key = normalizedFactKey(a, b);
-    const p = progress[key];
-    return {
-      display: `${a}x${b}`,
-      rank: p ? levelRank[p.level] : -1,
-      attempts: p ? p.attempts : 0,
-      lastPracticed: p ? p.lastPracticed : 0,
-    };
-  });
+// 段の中の1問(dan × step)に正解して次の問題に進むときに呼ぶ
+export function advanceDanStep(): DanProgress {
+  const p = loadDanProgress();
+  const updated: DanProgress = { ...p, currentStep: Math.min(p.currentStep + 1, 10) };
+  saveDanProgress(updated);
+  return updated;
+}
 
-  scored.sort((x, y) => x.rank - y.rank || x.attempts - y.attempts || x.lastPracticed - y.lastPracticed);
-
-  const todaySet: TodaySet = { date, factKeys: scored.slice(0, 5).map((s) => s.display) };
-  writeJson(KEYS.today, todaySet);
-  return todaySet;
+// 段のレビュー画面を見終えて次の段に進むときに呼ぶ
+export function completeDanReview(): DanProgress {
+  const p = loadDanProgress();
+  const completedDans = p.completedDans.includes(p.currentDan)
+    ? p.completedDans
+    : [...p.completedDans, p.currentDan];
+  const updated: DanProgress = { currentDan: p.currentDan + 1, currentStep: 1, completedDans };
+  saveDanProgress(updated);
+  return updated;
 }

@@ -1,24 +1,24 @@
 import { useState } from "react";
-import { DailyProblems } from "./screens/DailyProblems";
+import { DanPractice } from "./screens/DanPractice";
 import { Gallery } from "./screens/Gallery";
 import { Progress } from "./screens/Progress";
 import "./App.css";
 
-type Screen = "daily" | "gallery" | "progress";
+type Screen = "practice" | "gallery" | "progress";
 
 const TABS: { id: Screen; label: string }[] = [
-  { id: "daily", label: "今日の5問" },
+  { id: "practice", label: "れんしゅう" },
   { id: "gallery", label: "いろいろな見方" },
   { id: "progress", label: "進み具合" },
 ];
 
 function App() {
-  const [screen, setScreen] = useState<Screen>("daily");
+  const [screen, setScreen] = useState<Screen>("practice");
 
   return (
     <div className="app-shell">
       <main className="app-main">
-        {screen === "daily" && <DailyProblems />}
+        {screen === "practice" && <DanPractice />}
         {screen === "gallery" && <Gallery />}
         {screen === "progress" && <Progress />}
       </main>

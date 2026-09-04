@@ -29,7 +29,8 @@ export type StrategyTag =
   | "anchor10" // 10を基準に分けた
   | "sequential" // 1ずつのような細かい逐次分割
   | "distributive2d" // 縦横同時に分割(2次元展開)
-  | "simple-split"; // その他の単純な1回分割
+  | "simple-split" // その他の単純な1回分割
+  | "skip-count"; // まとまりを1個ずつ積み上げて数えた(段の練習)
 
 export interface AttemptLog {
   id: string;
@@ -57,7 +58,9 @@ export interface FactProgress {
   discoveredSplitSignatures: string[]; // Gallery用: 使ったことのある分割の署名
 }
 
-export interface TodaySet {
-  date: string; // YYYY-MM-DD
-  factKeys: string[]; // `${a}x${b}` 表示順そのまま
+// 段の進み具合。1つの段(dan)は factA=dan, factB=1..9 の9問で構成される
+export interface DanProgress {
+  currentDan: number; // 1-9。9を終えてレビューも終わると10になり「全段クリア」
+  currentStep: number; // 1-9が出題中の問題番号。10になったらその段のレビュー画面
+  completedDans: number[];
 }
