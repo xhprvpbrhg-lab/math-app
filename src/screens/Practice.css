@@ -1,0 +1,29 @@
+.prc-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.prc-mode-toggle {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  padding: 14px 12px 4px;
+}
+
+.prc-mode-btn {
+  font-size: 15px;
+  padding: 10px 16px;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.prc-mode-btn.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}

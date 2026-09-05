@@ -1,4 +1,7 @@
 import { STEPS_PER_DAN, TOTAL_DANS, danLabel } from "../lib/dan";
+import { pickAlternative } from "../lib/representations";
+import { NumberLine } from "./NumberLine";
+import { FormulaTrace } from "./FormulaTrace";
 import "./DanReview.css";
 
 interface Props {
@@ -7,10 +10,13 @@ interface Props {
 }
 
 const MAX_TOWER_PX = 200;
+const ALT_STEP = STEPS_PER_DAN;
 
 export function DanReview({ dan, onNext }: Props) {
   const unit = Math.min(22, Math.max(3, MAX_TOWER_PX / (dan * STEPS_PER_DAN)));
   const isLastDan = dan >= TOTAL_DANS;
+  const lineValues = Array.from({ length: STEPS_PER_DAN + 1 }, (_, i) => dan * i);
+  const alt = pickAlternative(dan, ALT_STEP, null);
 
   return (
     <div className="drv-container">
@@ -38,6 +44,17 @@ export function DanReview({ dan, onNext }: Props) {
           );
         })}
       </div>
+
+      <NumberLine values={lineValues} />
+
+      {alt && (
+        <div className="drv-alt">
+          <p className="drv-alt-label">
+            べつの見方も見てみよう: {dan} × {ALT_STEP} は {alt.label}
+          </p>
+          <FormulaTrace rect={alt.rect} split={alt.split} />
+        </div>
+      )}
 
       <button type="button" className="drv-next-btn" onClick={onNext}>
         {isLastDan ? "ぜんぶのだん クリア!" : `つぎは ${dan + 1}のだんへ!`}

@@ -1,0 +1,25 @@
+.sct-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px;
+}
+
+.sct-cell {
+  min-width: 30px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.sct-cell.is-done {
+  color: var(--ink);
+}
+
+.sct-cell.is-future {
+  color: var(--ink-soft);
+  opacity: 0.45;
+}

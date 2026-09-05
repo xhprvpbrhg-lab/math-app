@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { DanPractice } from "./screens/DanPractice";
+import { Practice } from "./screens/Practice";
 import { Gallery } from "./screens/Gallery";
 import { Progress } from "./screens/Progress";
 import "./App.css";
@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="app-shell">
       <main className="app-main">
-        {screen === "practice" && <DanPractice />}
+        {screen === "practice" && <Practice />}
         {screen === "gallery" && <Gallery />}
         {screen === "progress" && <Progress />}
       </main>

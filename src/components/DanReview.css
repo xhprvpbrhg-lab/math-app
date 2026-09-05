@@ -48,6 +48,20 @@
   font-variant-numeric: tabular-nums;
 }
 
+.drv-alt {
+  background: var(--surface-inset);
+  border-radius: 12px;
+  padding: 12px 16px;
+  text-align: center;
+  max-width: 480px;
+}
+
+.drv-alt-label {
+  margin: 4px 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
 .drv-next-btn {
   font-size: 20px;
   padding: 14px 28px;

@@ -1,0 +1,60 @@
+.nl-scroll {
+  width: 100%;
+  overflow-x: auto;
+  padding: 4px 0;
+}
+
+.nl-container {
+  position: relative;
+  display: inline-flex;
+  padding: 0 12px;
+}
+
+.nl-baseline {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 7px;
+  height: 2px;
+  background: var(--line);
+}
+
+.nl-ticks {
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+  position: relative;
+}
+
+.nl-tick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.nl-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.nl-dot.is-hidden {
+  background: var(--surface);
+  border: 2px solid var(--accent-strong);
+}
+
+.nl-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.nl-label.is-hidden {
+  color: var(--accent-strong);
+  font-weight: 800;
+  font-size: 18px;
+}

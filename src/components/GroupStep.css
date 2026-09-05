@@ -8,7 +8,7 @@
   margin: 0 auto;
 }
 
-.gs-progress {
+.gs-dan-label {
   color: var(--ink-soft);
   font-size: 15px;
   margin: 0;
@@ -77,19 +77,6 @@
 .gs-equation--mul {
   color: var(--accent-strong);
   font-weight: 700;
-}
-
-.gs-alt {
-  background: var(--surface-inset);
-  border-radius: 12px;
-  padding: 8px 16px;
-  text-align: center;
-}
-
-.gs-alt-label {
-  margin: 4px 0;
-  font-size: 14px;
-  color: var(--ink-soft);
 }
 
 .gs-next-btn {

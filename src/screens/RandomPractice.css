@@ -1,0 +1,32 @@
+.rp-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding-top: 12px;
+}
+
+.rp-range-toggle {
+  display: flex;
+  gap: 8px;
+  background: var(--surface-inset);
+  padding: 4px;
+  border-radius: 12px;
+}
+
+.rp-range-btn {
+  font-size: 14px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.rp-range-btn.is-active {
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

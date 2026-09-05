@@ -1,9 +1,8 @@
 import { useRef, useState } from "react";
 import type { AttemptLog, FactProgress, VisualAidLevel } from "../types";
 import { GroupArray } from "./GroupArray";
+import { SkipCountTrack } from "./SkipCountTrack";
 import { AnswerInput } from "./AnswerInput";
-import { FormulaTrace } from "./FormulaTrace";
-import { pickAlternative } from "../lib/representations";
 import { recordAttempt } from "../lib/storage";
 import "./GroupStep.css";
 
@@ -52,13 +51,10 @@ export function GroupStep({ dan, step, visualAid, onRecorded, onAdvance }: Props
     onRecorded?.(log, progress);
   };
 
-  const alt = phase === "answered" ? pickAlternative(dan, step, null) : null;
-
   return (
     <div className="gs-container">
-      <p className="gs-progress">
-        {dan}のだん ・ {step} / 9問目
-      </p>
+      <p className="gs-dan-label">{dan}のだん</p>
+      <SkipCountTrack dan={dan} step={step} answered={phase === "answered"} />
 
       {!revealed && (
         <>
@@ -94,13 +90,6 @@ export function GroupStep({ dan, step, visualAid, onRecorded, onAdvance }: Props
               <p className="gs-equation gs-equation--mul">
                 {dan} × {step} = {total}
               </p>
-
-              {alt && (
-                <div className="gs-alt">
-                  <p className="gs-alt-label">こんな見方もあるよ: {alt.label}</p>
-                  <FormulaTrace rect={alt.rect} split={alt.split} />
-                </div>
-              )}
 
               <button type="button" className="gs-next-btn" onClick={onAdvance}>
                 つぎへ
