@@ -12,12 +12,14 @@ interface Props {
   onNext: () => void;
 }
 
+type Phase = "solving" | "missed" | "correct" | "revealed";
+
 export function RandomQuestion({ a, b, onNext }: Props) {
   const [hintLevel, setHintLevel] = useState(0);
-  const [phase, setPhase] = useState<"solving" | "answered">("solving");
-  const [feedback, setFeedback] = useState<{ correct: boolean } | null>(null);
+  const [phase, setPhase] = useState<Phase>("solving");
   const startTimeRef = useRef(Date.now());
   const total = a * b;
+  const prevTotal = a * (b - 1);
 
   const showHint = () => setHintLevel((h) => Math.min(h + 1, 3));
 
@@ -42,8 +44,7 @@ export function RandomQuestion({ a, b, onNext }: Props) {
     };
 
     recordAttempt(log);
-    setFeedback({ correct });
-    setPhase("answered");
+    setPhase(correct ? "correct" : "missed");
   };
 
   return (
@@ -74,11 +75,48 @@ export function RandomQuestion({ a, b, onNext }: Props) {
         </>
       )}
 
-      {phase === "answered" && feedback && (
-        <div className={`rq-feedback ${feedback.correct ? "is-correct" : "is-wrong"}`}>
-          <p className="rq-feedback-text">{feedback.correct ? "せいかい!" : "おしい"}</p>
+      {phase === "missed" && (
+        <div className="rq-feedback is-missed">
+          <p className="rq-feedback-text">おしい!</p>
+          <p className="rq-retry-prompt">ヒントを見ながら もういちど?</p>
+          <div className="rq-choice-row">
+            <button type="button" className="rq-retry-btn" onClick={() => setPhase("solving")}>
+              もういちど
+            </button>
+            <button type="button" className="rq-reveal-btn" onClick={() => setPhase("revealed")}>
+              こたえをみる
+            </button>
+          </div>
+        </div>
+      )}
+
+      {phase === "correct" && (
+        <div className="rq-feedback is-correct">
+          <p className="rq-feedback-text">せいかい!</p>
           <p className="rq-equation">
             {a} × {b} = {total}
+          </p>
+          <p className="rq-recap-line">
+            {a}ずつ {b}こで {total}
+          </p>
+          <GroupArray dan={a} visibleGroups={b} highlightLastGroup={false} mode="dots" />
+          <NumberLine values={Array.from({ length: b + 1 }, (_, i) => a * i)} />
+          <button type="button" className="rq-next-btn" onClick={onNext}>
+            つぎのもんだいへ
+          </button>
+        </div>
+      )}
+
+      {phase === "revealed" && (
+        <div className="rq-feedback is-revealed">
+          <p className="rq-equation">
+            {a} × {b} = {total}
+          </p>
+          <p className="rq-recap-line">
+            {prevTotal}に {a}をたすと {total}
+          </p>
+          <p className="rq-recap-line">
+            {a}のまとまりが{b}こで {total}
           </p>
           <GroupArray dan={a} visibleGroups={b} highlightLastGroup={false} mode="dots" />
           <NumberLine values={Array.from({ length: b + 1 }, (_, i) => a * i)} />

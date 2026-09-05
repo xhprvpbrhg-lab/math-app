@@ -27,7 +27,11 @@ export function Practice() {
         </button>
       </div>
 
-      {mode === "sequential" ? <DanPractice /> : <RandomPractice />}
+      {mode === "sequential" ? (
+        <DanPractice />
+      ) : (
+        <RandomPractice onSwitchToSequential={() => setMode("sequential")} />
+      )}
     </div>
   );
 }

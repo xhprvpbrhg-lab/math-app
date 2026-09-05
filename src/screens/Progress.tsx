@@ -26,6 +26,8 @@ export function Progress() {
     return { ...c, unseen };
   }, [progress]);
 
+  const isDiagonal = selected ? selected[0] === selected[1] : false;
+  const mirror: [number, number] | null = selected ? [selected[1], selected[0]] : null;
   const selectedProgress: FactProgress | undefined = selected ? progress[normalizedFactKey(...selected)] : undefined;
 
   return (
@@ -49,11 +51,21 @@ export function Progress() {
             const p = progress[normalizedFactKey(a, b)];
             const level = p?.level ?? "concrete";
             const known = Boolean(p && p.attempts > 0);
+            const isSelected = Boolean(selected && selected[0] === a && selected[1] === b);
+            const isMirror = Boolean(mirror && !isDiagonal && mirror[0] === a && mirror[1] === b);
             return (
               <button
                 key={`${a}-${b}`}
                 type="button"
-                className={`pr-cell pr-lv-${known ? level : "unseen"}`}
+                className={[
+                  "pr-cell",
+                  `pr-lv-${known ? level : "unseen"}`,
+                  a === b ? "is-diag" : "",
+                  isSelected ? "is-selected" : "",
+                  isMirror ? "is-mirror" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
                 onClick={() => setSelected([a, b])}
               >
                 {a * b}
@@ -65,9 +77,16 @@ export function Progress() {
 
       {selected && (
         <div className="pr-detail">
-          <p className="pr-detail-title">
-            {selected[0]} × {selected[1]}
+          <p className="pr-detail-eq">
+            {selected[0]} × {selected[1]} = {selected[0] * selected[1]}
           </p>
+          {!isDiagonal && mirror && (
+            <p className="pr-detail-eq">
+              {mirror[0]} × {mirror[1]} = {mirror[0] * mirror[1]}
+            </p>
+          )}
+          <p className="pr-detail-discovery">{isDiagonal ? "おなじ数どうし" : "ぎゃくにしても おなじ!"}</p>
+
           {selectedProgress ? (
             <>
               <p>状態: {LEVEL_LABEL[selectedProgress.level]}</p>

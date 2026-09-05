@@ -49,8 +49,13 @@
   box-shadow: inset 0 0 0 2px var(--good);
 }
 
-.rq-feedback.is-wrong {
-  box-shadow: inset 0 0 0 2px var(--bad);
+.rq-feedback.is-missed {
+  box-shadow: inset 0 0 0 2px var(--block-1);
+  background: var(--surface-inset);
+}
+
+.rq-feedback.is-revealed {
+  box-shadow: inset 0 0 0 2px var(--line);
 }
 
 .rq-feedback-text {
@@ -59,10 +64,59 @@
   margin: 0;
 }
 
+.rq-retry-prompt {
+  font-size: 16px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.rq-choice-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.rq-retry-btn {
+  font-size: 17px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rq-retry-btn:active {
+  background: var(--accent-strong);
+}
+
+.rq-reveal-btn {
+  font-size: 17px;
+  padding: 12px 22px;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.rq-reveal-btn:active {
+  background: var(--surface-inset);
+}
+
 .rq-equation {
   font-size: 24px;
   font-weight: 700;
   color: var(--accent-strong);
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.rq-recap-line {
+  font-size: 17px;
+  color: var(--ink-soft);
   margin: 0;
   font-variant-numeric: tabular-nums;
 }

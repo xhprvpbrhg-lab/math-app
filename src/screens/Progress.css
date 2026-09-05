@@ -41,6 +41,7 @@
 }
 
 .pr-cell {
+  position: relative;
   aspect-ratio: 1;
   border: none;
   border-radius: 6px;
@@ -48,6 +49,32 @@
   font-weight: 600;
   color: var(--ink);
   cursor: pointer;
+}
+
+.pr-cell.is-diag {
+  box-shadow: inset 0 0 0 2px var(--ink-soft);
+}
+
+.pr-cell.is-selected {
+  box-shadow: inset 0 0 0 3px var(--accent-strong);
+}
+
+.pr-cell.is-mirror {
+  box-shadow: inset 0 0 0 3px var(--accent);
+}
+
+.pr-detail-eq {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 2px 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.pr-detail-discovery {
+  font-size: 15px;
+  color: var(--accent-strong);
+  font-weight: 700;
+  margin: 4px 0 10px;
 }
 
 .pr-lv-unseen {
@@ -81,9 +108,4 @@
 
 .pr-detail p {
   margin: 4px 0;
-}
-
-.pr-detail-title {
-  font-size: 22px;
-  font-weight: 700;
 }
