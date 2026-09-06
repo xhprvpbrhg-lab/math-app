@@ -1,40 +1,40 @@
 import { useState } from "react";
-import { Practice } from "./screens/Practice";
-import { Gallery } from "./screens/Gallery";
-import { Progress } from "./screens/Progress";
+import { AddHome } from "./screens/AddHome";
+import { SubHome } from "./screens/SubHome";
+import { MulHome } from "./screens/MulHome";
 import "./App.css";
 
-type Screen = "practice" | "gallery" | "progress";
+type Domain = "add" | "sub" | "mul";
 
-const TABS: { id: Screen; label: string }[] = [
-  { id: "practice", label: "れんしゅう" },
-  { id: "gallery", label: "いろいろな見方" },
-  { id: "progress", label: "進み具合" },
+const DOMAINS: { id: Domain; label: string }[] = [
+  { id: "add", label: "たしざん" },
+  { id: "sub", label: "ひきざん" },
+  { id: "mul", label: "かけざん" },
 ];
 
 function App() {
-  const [screen, setScreen] = useState<Screen>("practice");
+  const [domain, setDomain] = useState<Domain>("mul");
 
   return (
     <div className="app-shell">
-      <main className="app-main">
-        {screen === "practice" && <Practice />}
-        {screen === "gallery" && <Gallery />}
-        {screen === "progress" && <Progress />}
-      </main>
-
-      <nav className="app-nav">
-        {TABS.map((tab) => (
+      <nav className="app-domain-bar">
+        {DOMAINS.map((d) => (
           <button
-            key={tab.id}
+            key={d.id}
             type="button"
-            className={`app-nav-btn ${screen === tab.id ? "is-active" : ""}`}
-            onClick={() => setScreen(tab.id)}
+            className={`app-domain-btn ${domain === d.id ? "is-active" : ""}`}
+            onClick={() => setDomain(d.id)}
           >
-            {tab.label}
+            {d.label}
           </button>
         ))}
       </nav>
+
+      <main className="app-main">
+        {domain === "add" && <AddHome />}
+        {domain === "sub" && <SubHome />}
+        {domain === "mul" && <MulHome />}
+      </main>
     </div>
   );
 }

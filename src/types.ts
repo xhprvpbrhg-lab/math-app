@@ -64,3 +64,13 @@ export interface DanProgress {
   currentStep: number; // 1-9が出題中の問題番号。10になったらその段のレビュー画面
   completedDans: number[];
 }
+
+// たし算・ひき算は九九ほど細かい習熟度を追わず、種類ごとの練習回数だけを覚えておく
+export type ArithmeticCategory = "add-no-carry" | "add-carry" | "sub-no-borrow" | "sub-borrow";
+
+export interface ArithmeticCategoryStat {
+  attempts: number;
+  correct: number;
+}
+
+export type ArithmeticProgress = Record<ArithmeticCategory, ArithmeticCategoryStat>;

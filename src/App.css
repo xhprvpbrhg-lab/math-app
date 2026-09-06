@@ -5,31 +5,34 @@
   min-height: 100svh;
 }
 
-.app-main {
-  flex: 1;
-  overflow-y: auto;
-  padding-bottom: 8px;
-}
-
-.app-nav {
+.app-domain-bar {
   display: flex;
-  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   background: var(--surface);
   position: sticky;
-  bottom: 0;
+  top: 0;
+  z-index: 5;
 }
 
-.app-nav-btn {
+.app-domain-btn {
   flex: 1;
   padding: 14px 4px;
   border: none;
   background: transparent;
   color: var(--ink-soft);
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
 }
 
-.app-nav-btn.is-active {
+.app-domain-btn.is-active {
   color: var(--accent-strong);
-  font-weight: 700;
+  border-bottom: 3px solid var(--accent-strong);
+}
+
+.app-main {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }

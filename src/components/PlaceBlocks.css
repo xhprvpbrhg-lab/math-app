@@ -1,0 +1,49 @@
+.pb-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.pb-row.is-highlight {
+  background: var(--surface-inset);
+}
+
+.pb-group {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.pb-tenbar {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1px;
+  width: 18px;
+  padding: 2px;
+  background: var(--block-2);
+  border-radius: 4px;
+}
+
+.pb-tick {
+  height: 4px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.pb-ones {
+  align-items: center;
+  max-width: 130px;
+}
+
+.pb-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--block-1);
+  box-shadow: inset 0 0 0 1.5px rgba(0, 0, 0, 0.08);
+}
